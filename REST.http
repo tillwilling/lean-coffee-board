@@ -1,0 +1,6 @@
+### GET /
+GET http://localhost:4000
+
+
+### GET /users
+GET http://localhost:4000/users
