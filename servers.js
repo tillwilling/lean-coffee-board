@@ -1,4 +1,13 @@
 const express = require('express')
+const mongoose = require('mongoose')
+
+mongoose
+  .connect('mongodb://localhost:27017/lean-coffee-board', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log('Connected to MongoDB (lean-coffee-board)'))
+  .catch(console.error)
 
 // express likes to call the server "app"
 const app = express()

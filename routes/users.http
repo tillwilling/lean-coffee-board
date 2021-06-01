@@ -3,26 +3,35 @@
 
 @baseUrl = http://localhost:4000
 
-### GET /users
+### GET all users
 GET {{baseUrl}}/api/users
 
-### GET /api/users/:id
+### GET a single user
 GET {{baseUrl}}/api/users/0
 
-### GET /api/users/2000 (should not be found)
+### GET a non existing user (404)
 GET {{baseUrl}}/api/users/2000
 
-### POST /api/users
+### POST a new user
 POST http://localhost:4000/api/users
 Content-Type: application/json
 
 {
   "name": "Max Mustermann",
   "age": 42,
+  "email": "x@mm.com",
+  "meal": "I am ignored"
+}
+### ERROR: POST a new user with missing name
+POST http://localhost:4000/api/users
+Content-Type: application/json
+
+{
+  "age": 42,
   "email": "maxmustermann1979@gmx.de"
 }
 
-### PATCH /api/users/1
+### PATCH a user
 PATCH {{baseUrl}}/api/users/1
 Content-Type: application/json
 
@@ -31,5 +40,5 @@ Content-Type: application/json
   "email": "jack@doe.com"
 }
 
-### DELETE /api/users/1
+### DELETE a user
 DELETE {{baseUrl}}/api/users/1

@@ -4,15 +4,9 @@ const router = express.Router()
 
 let cards = [
   {
-    text: 'This is a sample text',
-    author: 'Jayson Doe',
-    votes: 88,
-    id: '0',
-  },
-  {
-    text: 'This is also a sample text',
-    author: 'Johnny Doe',
-    votes: 99,
+    text: 'What does Mongo stand for?',
+    author: 'Till',
+    votes: 0,
     id: '1',
   },
 ]
@@ -23,29 +17,29 @@ router.get('/', (req, res, next) => {
 
 router.get('/:id', (req, res, next) => {
   const { id } = req.params
-  const foundUser = cards.find(user => user.id === id)
-  foundUser ? res.json(foundUser) : next()
+  const foundCard = cards.find(card => card.id === id)
+  foundCard ? res.json(foundCard) : next()
 })
 
 router.post('/', (req, res, next) => {
-  const newUser = { ...req.body, id: uuidv4() }
-  cards.push(newUser)
-  res.status(201).json(newUser)
+  const newCard = { ...req.body, id: uuidv4() }
+  cards.push(newCard)
+  res.status(201).json(newCard)
 })
 
 router.patch('/:id', (req, res, next) => {
   const { id } = req.params
 
-  const index = cards.findIndex(user => user.id === id)
-  const user = cards[index]
-  const updatedUser = { ...user, ...req.body }
-  cards.splice(index, 1, updatedUser)
-  res.json(updatedUser)
+  const index = cards.findIndex(card => card.id === id)
+  const card = cards[index]
+  const updatedCard = { ...card, ...req.body }
+  cards.splice(index, 1, updatedCard)
+  res.json(updatedCard)
 })
 
 router.delete('/:id', (req, res, next) => {
   const { id } = req.params
-  cards = cards.filter(user => user.id !== id)
+  cards = cards.filter(card => card.id !== id)
   res.sendStatus(204)
 })
 
